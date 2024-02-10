@@ -1,9 +1,11 @@
 import React from "react";
 import "./useroption.css";
+import NavBar from "./NavBar";
 
 export default function useroption() {
   return (
     <>
+    <NavBar/>
       <section className="vh-100">
         <div className="container py-5 h-100">
           <div className="row d-flex align-items-center justify-content-center h-100">
