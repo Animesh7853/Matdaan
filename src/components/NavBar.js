@@ -35,15 +35,14 @@ export default function Navbar() {
               
               
             </ul>
-            <form className="d-flex" role="search">
-             <div class="form-check form-switch">
-              <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/>
-                <Link> <button className="btn btn-primary" to = "/login">Login</button> </Link>
-                <Link> <button className="btn btn-primary" to = "/signup">Sign Up</button> </Link>
+           
+             <div className="form-check form-switch">
+              
+                <Link to = "/login"> <button className="btn btn-primary "  >Login</button> </Link>
+                <Link to = "/signup"> <button className="btn btn-primary" >Sign Up</button> </Link>
 
               </div>
-              
-            </form>
+        
           </div>
         </div>
       </nav>
