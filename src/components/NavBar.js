@@ -36,7 +36,7 @@ export default function Navbar() {
               
             </ul>
            
-             <div className="form-check form-switch">
+             <div className="form-check form-switch mx-2">
               
                 <Link to = "/login"> <button className="btn btn-primary "  >Login</button> </Link>
                 <Link to = "/signup"> <button className="btn btn-primary" >Sign Up</button> </Link>
