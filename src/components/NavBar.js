@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
 
@@ -22,55 +23,26 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to = "/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
+                <Link className="nav-link active" aria-current="page" to = "/about">
+                  About Us
+                </Link>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                 About Us
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-             
-            </ul>
-            <form className="d-flex" role="search">
-             <div class="form-check form-switch">
-              <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/>
-                <label className="form-check-label" for="flexSwitchCheckDefault">Enable Dark Mode</label>
-              </div>
               
-            </form>
+              
+            </ul>
+           
+             <div className="form-check form-switch mx-2">
+              
+                <Link to = "/login"> <button className="btn btn-primary "  >Login</button> </Link>
+                <Link to = "/signup"> <button className="btn btn-primary" >Sign Up</button> </Link>
+
+              </div>
+        
           </div>
         </div>
       </nav>

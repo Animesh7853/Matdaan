@@ -1,6 +1,6 @@
 import React from 'react'
 import './form.css';
-export default function form() {
+export default function signup() {
   return (
     <>
     <div>
