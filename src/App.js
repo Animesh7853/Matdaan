@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Landing from "./components/Landing";
+import Modaloption from "./components/Modaloption";
 
 function App() {
   return (
@@ -13,10 +14,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route exact path="/login" element={<Login />} />
-        {/* <Route exact path="/option" element={<UserOption />} /> */}
+        {/* <Route exact path="/modaloption" element={<Modaloption/>} /> */}
         <Route exact path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
+    // <Modaloption/>
   );
 }
 
