@@ -6,14 +6,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Landing from "./components/Landing";
 import Modaloption from "./components/Modaloption";
+import Home from "./components/Home";
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/home" element={<Home/>} />
         {/* <Route exact path="/modaloption" element={<Modaloption/>} /> */}
         <Route exact path="/signup" element={<SignUp />} />
       </Routes>

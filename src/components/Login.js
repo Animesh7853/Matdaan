@@ -1,7 +1,34 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, createBrowserRouter } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  let navigate = useNavigate(); 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/login", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: credentials.email, password: credentials.password })
+    });
+    const json = await response.json();
+    console.log(json);
+    if (json.success) {
+      localStorage.setItem('token', json.authtoken);
+      navigate('/home') ;
+    } else {
+      alert("Invalid credentials");
+    }
+  }
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  }
+
   return (
     <>
       <section className="vh-100" style={{ backgroundColor: "#9A616D" }}>
@@ -21,7 +48,7 @@ function Login(props) {
                       style={{
                         borderRadius: "1rem 0 0 1rem",
                         margin: "auto",
-                        display: "block", // Ensures image behaves correctly with mx-auto
+                        display: "block",
                       }}
                     />
                   </div>
@@ -38,7 +65,7 @@ function Login(props) {
 
                         <h5
                           className="fw-normal mb-3 pb-3"
-                          style={{ letterSpacing: "1px" , color: "#E3E3E7"}}
+                          style={{ letterSpacing: "1px", color: "#E3E3E7" }}
                         >
                           Sign into your account
                         </h5>
@@ -48,8 +75,15 @@ function Login(props) {
                             type="email"
                             id="form2Example17"
                             className="form-control form-control-lg"
+                            name="email" // Add name attribute
+                            value={credentials.email}
+                            onChange={onChange}
+                            style={{ color: "#E3E3E7" }}
                           />
-                          <label className="form-label" for="form2Example17" style={{color: "#E3E3E7"}}>
+                          <label
+                            className="form-label"
+                            htmlFor="form2Example17" // Use htmlFor instead of for
+                          >
                             Email address
                           </label>
                         </div>
@@ -59,8 +93,15 @@ function Login(props) {
                             type="password"
                             id="form2Example27"
                             className="form-control form-control-lg"
+                            name="password" // Add name attribute
+                            value={credentials.password}
+                            onChange={onChange}
+                            style={{ color: "#E3E3E7" }}
                           />
-                          <label className="form-label" for="form2Example27" style={{color: "#E3E3E7"}}>
+                          <label
+                            className="form-label"
+                            htmlFor="form2Example27" // Use htmlFor instead of for
+                          >
                             Password
                           </label>
                         </div>
@@ -69,31 +110,31 @@ function Login(props) {
                           <button
                             className="btn btn-dark btn-lg btn-block"
                             type="button"
+                            onClick={handleSubmit}
                           >
                             Login
                           </button>
                         </div>
 
-                        <a className="small text-danger" href="#!">
-                          Forgot password?
-                        </a>
-                        <p
-                          className="mb-5 pb-lg-2"
-                          style={{ color: "whitesmoke" }}
-                        >
-                          Don't have an account?{" "}
-                          <Link to="/signup" className="text-info">
-                            Register here
-                          </Link>
-                        </p>
-                        <a href="#!" className="small text-info ">
-                          Terms of use.{"  "}
-                      
-                        </a>
-                        <a href="#!" className="small text-info">
-                          Privacy policy
-                        </a>
                       </form>
+                      <a className="small text-danger" href="#!">
+                        Forgot password?
+                      </a>
+                      <p
+                        className="mb-5 pb-lg-2"
+                        style={{ color: "whitesmoke" }}
+                      >
+                        Don't have an account?{" "}
+                        <Link to="/signup" className="text-info">
+                          Register here
+                        </Link>
+                      </p>
+                      <a href="#!" className="small text-info ">
+                        Terms of use.{"  "}
+                      </a>
+                      <a href="#!" className="small text-info">
+                        Privacy policy
+                      </a>
                     </div>
                   </div>
                 </div>
