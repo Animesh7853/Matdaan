@@ -11,7 +11,7 @@ router.use(express.json());
 // });
 
 router.post('/signup', async (req, res) => {
-    const { firstName, lastName, email, aadharNumber, mobileNumber, password } = req.body;
+    const { firstName, lastName, email, aadharNumber, mobileNumber, password, election } = req.body;
     try {
         const newCandidate = await Candidate.create({
             firstName,
@@ -20,8 +20,9 @@ router.post('/signup', async (req, res) => {
             aadharNumber,
             mobileNumber,
             password,
+            election,
         });
-        return res.status(201).json({ msg: "success", Candidate: newCandidate._id,token:req.cookies.token});
+        return res.status(201).json({ msg: "success", Candidate: newCandidate._id, token: req.cookies.token });
     } catch (err) {
         return res.status(400).json({ error: err.message });
     }

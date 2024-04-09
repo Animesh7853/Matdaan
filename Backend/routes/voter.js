@@ -1,6 +1,9 @@
 const express= require("express");
 const Voter=require('../models/voter')
 const VoterAddress = require('../models/voter-add'); // Import the VoterAddress model
+const CandidateAddress = require('../models/candidate-add');
+const Candidate = require('../models/candidate'); // Import the Candidate model
+
 
 const router = express.Router();
 router.use(express.json());
@@ -60,6 +63,10 @@ router.post('/add-voter', async (req, res) => {
         return res.status(400).json({ error: err.message });
     }
 });
+
+
+
+
 
 router.get('/logout',(req,res)=>{
     res.clearCookie("token").redirect("/signin");
