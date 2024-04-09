@@ -1,178 +1,295 @@
-import React from 'react'
-import './form.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./signup.css";
 export default function VoterSignup() {
+
+  let navigate = useNavigate();
+  const [data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    aadharNumber:'',
+    mobileNumber: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8000/voter/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        aadharNumber:data.aadharNumber,
+        mobileNumber: data.mobileNumber,
+        password: data.password,
+      }),
+    });
+    const json = await response.json();
+    if (json.msg === "success") {
+      alert("Congrats You are successfully registered to cast your vote");
+      localStorage.setItem('token', json.token);
+      navigate("../voter/login");
+    }
+    else if(json.msg!="success"){
+      alert("Registration failed")
+    }
+  };
+
+  const onChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   return (
     <>
-    <div>
-    <section className="h-100 h-custom gradient-custom-2">
-  <div className="container py-5 h-100">
-    <div className="row d-flex justify-content-center align-items-center h-100">
-      <div className="col-12">
-        <div className="card card-registration card-registration-2" style={{borderRadius: '15px'}}>
-          <div className="card-body p-0">
-            <div className="row g-0">
-              <div className="col-lg-6">
-                <div className="p-5">
-                  <h3 className="fw-normal mb-5" style={{color: '#4835d4'}}>General Infomation</h3>
-
-                  <div className="mb-4 pb-2">
-                    <select className="select">
-                      <option value="1">Title</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                      <option value="4">Four</option>
-                    </select>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-md-6 mb-4 pb-2">
-
-                      <div className="form-outline">
-                        <input type="text" id="form3Examplev2" className="form-control form-control-lg" />
-                        <label className="form-label" for="form3Examplev2">First name</label>
+      <div className="container register">
+        <div className="row">
+          <div className="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+            <h3>Welcome</h3>
+            <p>You are 30 seconds away from casting your 1st vote.</p>
+            <input type="submit" name="" value="Login" />
+            <br />
+          </div>
+          <div className="col-md-9 register-right">
+            <ul
+              className="nav nav-tabs nav-justified"
+              id="myTab"
+              role="tablist"
+            >
+              <li className="nav-item">
+                <a
+                  className="nav-link active"
+                  id="home-tab"
+                  data-toggle="tab"
+                  href="#home"
+                  role="tab"
+                  aria-controls="home"
+                  aria-selected="false"
+                >
+                  Voter
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link"
+                  id="profile-tab"
+                  data-toggle="tab"
+                  href="#profile"
+                  role="tab"
+                  aria-controls="profile"
+                  aria-selected="false"
+                >
+                  Candidate
+                </a>
+              </li>
+            </ul>
+            <div className="tab-content" id="myTabContent">
+              <div
+                className="tab-pane fade show active"
+                id="home"
+                role="tabpanel"
+                aria-labelledby="home-tab"
+              >
+                <h3 className="register-heading">Apply as a Employee</h3>
+                <div className="row register-form">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="First Name *"
+                        value={data.firstName}
+                        name="firstName"
+                        onChange={onChange}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Last Name *"
+                        value={data.lastName}
+                        name="lastName"
+                        onChange={onChange}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Password *"
+                        value={data.password}
+                        name="password"
+                        onChange={onChange}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Confirm Password *"
+                        onChange={onChange}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <div className="maxl">
+                        <label className="radio inline">
+                          <input
+                            type="radio"
+                            name="gender"
+                            value="male"
+                            checked
+                          />
+                          <span> Male </span>
+                        </label>
+                        <label className="radio inline">
+                          <input type="radio" name="gender" value="female" />
+                          <span>Female </span>
+                        </label>
                       </div>
-
-                    </div>
-                    <div className="col-md-6 mb-4 pb-2">
-
-                      <div className="form-outline">
-                        <input type="text" id="form3Examplev3" className="form-control form-control-lg" />
-                        <label className="form-label" for="form3Examplev3">Last name</label>
-                      </div>
-
                     </div>
                   </div>
-
-                  <div className="mb-4 pb-2">
-                    <select className="select">
-                      <option value="1">Position</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                      <option value="4">Four</option>
-                    </select>
-                  </div>
-
-                  <div className="mb-4 pb-2">
-                    <div className="form-outline">
-                      <input type="text" id="form3Examplev4" className="form-control form-control-lg" />
-                      <label className="form-label" for="form3Examplev4">Position</label>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Your Email *"
+                        value={data.email}
+                        name="email"
+                        onChange={onChange}
+                      />
                     </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
-
-                      <div className="form-outline">
-                        <input type="text" id="form3Examplev5" className="form-control form-control-lg" />
-                        <label className="form-label" for="form3Examplev5">Bussines Arena</label>
-                      </div>
-
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        minlength="10"
+                        maxlength="10"
+                        name="mobileNumber"
+                        className="form-control"
+                        placeholder="Your Phone *"
+                        value={data.mobileNumber}
+                        onChange={onChange}
+                      />
                     </div>
-                    <div className="col-md-6">
-
-                      <select className="select">
-                        <option value="1">Employees</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                      </select>
-
+                    
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        minlength="10"
+                        maxlength="10"
+                        name="aadharNumber"
+                        className="form-control"
+                        placeholder="Your Aadhar *"
+                        value={data.aadharNumber}
+                        onChange={onChange}
+                      />
                     </div>
+                    <input
+                      type="submit"
+                      className="btnRegister"
+                      value="Register"
+                      onClick={handleSubmit}
+                    />
                   </div>
-
                 </div>
               </div>
-              <div className="col-lg-6 bg-indigo text-black">
-                <div className="p-5">
-                  <h3 className="fw-normal mb-5">Contact Details</h3>
-
-                  <div className="mb-4 pb-2">
-                    <div className="form-outline form-white">
-                      <input type="text" id="form3Examplea2" className="form-control form-control-lg" />
-                      <label className="form-label" for="form3Examplea2">Street + Nr</label>
+              <div
+                className="tab-pane fade show"
+                id="profile"
+                role="tabpanel"
+                aria-labelledby="profile-tab"
+              >
+                <h3 className="register-heading">Apply as a Hirer</h3>
+                <div className="row register-form">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="First Name *"
+                        value=""
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Last Name *"
+                        value=""
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Email *"
+                        value=""
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        maxlength="10"
+                        minlength="10"
+                        className="form-control"
+                        placeholder="Phone *"
+                        value=""
+                      />
                     </div>
                   </div>
-
-                  <div className="mb-4 pb-2">
-                    <div className="form-outline form-white">
-                      <input type="text" id="form3Examplea3" className="form-control form-control-lg" />
-                      <label className="form-label" for="form3Examplea3">Additional Information</label>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Password *"
+                        value=""
+                      />
                     </div>
+                    <div className="form-group">
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Confirm Password *"
+                        value=""
+                      />
+                    </div>
+                    <div className="form-group">
+                      <select className="form-control">
+                        <option className="hidden" selected disabled>
+                          Please select your Sequrity Question
+                        </option>
+                        <option>What is your Birthdate?</option>
+                        <option>What is Your old Phone Number</option>
+                        <option>What is your Pet Name?</option>
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="`Answer *"
+                        value=""
+                      />
+                    </div>
+                    <input
+                      type="submit"
+                      className="btnRegister"
+                      value="Register"
+                    />
                   </div>
-
-                  <div className="row">
-                    <div className="col-md-5 mb-4 pb-2">
-
-                      <div className="form-outline form-white">
-                        <input type="text" id="form3Examplea4" className="form-control form-control-lg" />
-                        <label className="form-label" for="form3Examplea4">Zip Code</label>
-                      </div>
-
-                    </div>
-                    <div className="col-md-7 mb-4 pb-2">
-
-                      <div className="form-outline form-white">
-                        <input type="text" id="form3Examplea5" className="form-control form-control-lg" />
-                        <label className="form-label" for="form3Examplea5">Place</label>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div className="mb-4 pb-2">
-                    <div className="form-outline form-white">
-                      <input type="text" id="form3Examplea6" className="form-control form-control-lg" />
-                      <label className="form-label" for="form3Examplea6">Country</label>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col-md-5 mb-4 pb-2">
-
-                      <div className="form-outline form-white">
-                        <input type="text" id="form3Examplea7" className="form-control form-control-lg" />
-                        <label className="form-label" for="form3Examplea7">Code +</label>
-                      </div>
-
-                    </div>
-                    <div className="col-md-7 mb-4 pb-2">
-
-                      <div className="form-outline form-white">
-                        <input type="text" id="form3Examplea8" className="form-control form-control-lg" />
-                        <label className="form-label" for="form3Examplea8">Phone Number</label>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <div className="form-outline form-white">
-                      <input type="text" id="form3Examplea9" className="form-control form-control-lg" />
-                      <label className="form-label" for="form3Examplea9">Your Email</label>
-                    </div>
-                  </div>
-
-                  <div className="form-check d-flex justify-content-start mb-4 pb-3">
-                    <input className="form-check-input me-3" type="checkbox" value="" id="form2Example3c" />
-                    <label className="form-check-label text-black" for="form2Example3">
-                      I do accept the <a href="#!" className="text-black"><u>Terms and Conditions</u></a> of your
-                      site.
-                    </label>
-                  </div>
-
-                  <button type="button" className="btn btn-light btn-lg"
-                    data-mdb-ripple-color="dark">Register</button>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-    </div>
     </>
-  )
+  );
 }
