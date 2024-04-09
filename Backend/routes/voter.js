@@ -42,7 +42,7 @@ router.post("/signin",async(req,res)=>{
 });
 
 
-router.post('/add-address', async (req, res) => {
+router.post('/add-voter', async (req, res) => {
     const { street, city, state, pinCode } = req.body;
     const voterId = req.user._id; // Assuming the authenticated user's ID is stored in req.user._id
 
@@ -64,6 +64,7 @@ router.post('/add-address', async (req, res) => {
 router.get('/logout',(req,res)=>{
     res.clearCookie("token").redirect("/signin");
 });
+
 
 
 
