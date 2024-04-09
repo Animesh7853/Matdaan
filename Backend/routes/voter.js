@@ -112,15 +112,8 @@ router.get('/cast-vote', async (req, res) => {
 });
 
 
-
-
-
-
 router.get('/logout',(req,res)=>{
     res.clearCookie("token").redirect("/signin");
 });
-
-
-
 
 module.exports=router;
