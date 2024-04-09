@@ -32,7 +32,7 @@ export default function CandidateSignup() {
     });
     const json = await response.json();
     if (json.msg == "success") {
-      alert("Congrats You are successfully registered to cast your vote");
+      alert("Congrats You are successfully registered.");
       localStorage.setItem("token", json.token);
       navigate("../candidate/login");
     } 
