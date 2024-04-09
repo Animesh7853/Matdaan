@@ -45,7 +45,7 @@ function VoterLogin(props) {
                 <div className="card" style={{ borderRadius: "1rem" }}>
                   <div className="card-body p-5 text-center">
                     <div className="my-md-5 pb-5">
-                      <h1 className="fw-bold mb-0">Welcome</h1>
+                      <h1 className="fw-bold mb-0">Welcome back! Voter</h1>
 
                       <i className="fas fa-user-astronaut fa-3x my-5"></i>
 
