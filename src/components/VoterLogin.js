@@ -19,9 +19,8 @@ function VoterLogin(props) {
       }),
     });
     const json = await response.json();
-    console.log(json);
     if (json.msg=='success') {
-      localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("token", json.token);
       navigate("/voter/home");
     } else {
       alert("Invalid credentials");

@@ -19,6 +19,7 @@ function CandidateLogin(props) {
     console.log(json);
     if (json.msg=='success') {
       localStorage.setItem('token', json.authtoken);
+      console.log(localStorage.getItem('token'))
       navigate('/candidate/home') ;
     } else {
       alert("Invalid credentials");
