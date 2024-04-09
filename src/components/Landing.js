@@ -16,10 +16,10 @@ export default function Landing() {
   const handleSubmit = () => {
     console.log(selectedValue);
     if(selectedValue=='voter'){
-      navigate('/voterLogin');
+      navigate('/voter/Login');
     }
     if(selectedValue=='candidate'){
-      navigate('/candidateLogin');
+      navigate('/candidate/Login');
     }
     else if (selectedValue==null){
       alert('Choose your identity');

@@ -8,7 +8,7 @@ function CandidateLogin(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const response = await fetch("http://localhost:8000/candidate/signin", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -17,9 +17,9 @@ function CandidateLogin(props) {
     });
     const json = await response.json();
     console.log(json);
-    if (json.success) {
+    if (json.msg=='success') {
       localStorage.setItem('token', json.authtoken);
-      navigate('/home') ;
+      navigate('/candidate/home') ;
     } else {
       alert("Invalid credentials");
     }
@@ -125,7 +125,7 @@ function CandidateLogin(props) {
                         style={{ color: "whitesmoke" }}
                       >
                         Don't have an account?{" "}
-                        <Link to="/signup" className="text-info">
+                        <Link to="/candidate/signup" className="text-info">
                           Register here
                         </Link>
                       </p>

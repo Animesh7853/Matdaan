@@ -1,140 +1,98 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function VoterLogin(props) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-  let navigate = useNavigate(); 
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/login", {
-      method: 'POST',
+    const response = await fetch("http://localhost:8000/voter/signin", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: credentials.email, password: credentials.password })
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+      }),
     });
     const json = await response.json();
     console.log(json);
-    if (json.success) {
-      localStorage.setItem('token', json.authtoken);
-      navigate('/home') ;
+    if (json.msg=='success') {
+      localStorage.setItem("token", json.authtoken);
+      navigate("/voter/home");
     } else {
       alert("Invalid credentials");
     }
-  }
+  };
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  }
+  };
 
   return (
     <>
-      <section className="vh-100" style={{ backgroundColor: "#9A616D" }}>
-        <div className="container py-5 h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col col-xl-10">
-              <div
-                className="card"
-                style={{ borderRadius: "1rem", backgroundColor: "#424242" }}
-              >
-                <div className="row g-0">
-                  <div className="col-md-6 col-lg-5 d-none d-md-block text-center">
-                    <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                      alt="login form"
-                      className="img-fluid mx-auto"
-                      style={{
-                        borderRadius: "1rem 0 0 1rem",
-                        margin: "auto",
-                        display: "block",
-                      }}
-                    />
-                  </div>
-                  <div className="col-md-6 col-lg-7 d-flex align-items-center">
-                    <div className="card-body p-4 p-lg-5 text-black">
-                      <form>
-                        <div className="d-flex align-items-center mb-3 pb-1">
-                          <i
-                            className="fas fa-cubes fa-2x me-3"
-                            style={{ color: "#ff6219" }}
-                          ></i>
-                          <span className="h1 fw-bold mb-0">Logo</span>
-                        </div>
+      <section className="intro">
+        <div
+          className="mask d-flex align-items-center h-100"
+          style={{ backgroundColor: "#D6D6D6" }}
+        >
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div className="card" style={{ borderRadius: "1rem" }}>
+                  <div className="card-body p-5 text-center">
+                    <div className="my-md-5 pb-5">
+                      <h1 className="fw-bold mb-0">Welcome</h1>
 
-                        <h5
-                          className="fw-normal mb-3 pb-3"
-                          style={{ letterSpacing: "1px", color: "#E3E3E7" }}
-                        >
-                          Sign into your account as Voter
-                        </h5>
+                      <i className="fas fa-user-astronaut fa-3x my-5"></i>
 
-                        <div className="form-outline mb-4">
-                          <input
-                            type="email"
-                            id="form2Example17"
-                            className="form-control form-control-lg"
-                            name="email" // Add name attribute
-                            value={credentials.email}
-                            onChange={onChange}
-                            style={{ color: "#E3E3E7" }}
-                          />
-                          <label
-                            className="form-label"
-                            htmlFor="form2Example17" // Use htmlFor instead of for
-                          >
-                            Email address
-                          </label>
-                        </div>
+                      <div className="form-outline mb-4">
+                        <input
+                          type="email"
+                          id="typeEmail"
+                          onChange={onChange}
+                          name="email"
+                          value={credentials.email}
+                          className="form-control form-control-lg"
+                        />
+                        <label className="form-label" htmlFor="typeEmail">
+                          Email
+                        </label>
+                      </div>
 
-                        <div className="form-outline mb-4">
-                          <input
-                            type="password"
-                            id="form2Example27"
-                            className="form-control form-control-lg"
-                            name="password" // Add name attribute
-                            value={credentials.password}
-                            onChange={onChange}
-                            style={{ color: "#E3E3E7" }}
-                          />
-                          <label
-                            className="form-label"
-                            htmlFor="form2Example27" // Use htmlFor instead of for
-                          >
-                            Password
-                          </label>
-                        </div>
+                      <div className="form-outline mb-5">
+                        <input
+                          type="password"
+                          id="typePassword"
+                          className="form-control form-control-lg"
+                          name="password"
+                          value={credentials.password}
+                          onChange={onChange}
+                        />
+                        <label className="form-label" for="typePassword">
+                          Password
+                        </label>
+                      </div>
 
-                        <div className="pt-1 mb-4">
-                          <button
-                            className="btn btn-dark btn-lg btn-block"
-                            type="button"
-                            onClick={handleSubmit}
-                          >
-                            Login
-                          </button>
-                        </div>
-
-                      </form>
-                      <a className="small text-danger" href="#!">
-                        Forgot password?
-                      </a>
-                      <p
-                        className="mb-5 pb-lg-2"
-                        style={{ color: "whitesmoke" }}
+                      <button
+                        className="btn btn-primary btn-lg btn-rounded gradient-custom text-body px-5"
+                        type="submit"
+                        onClick={handleSubmit}
                       >
+                        Login
+                      </button>
+                    </div>
+
+                    <div>
+                      <p className="mb-0">
                         Don't have an account?{" "}
-                        <Link to="/signup" className="text-info">
-                          Register here
+                        <Link to='../voter/signup' className="text-body fw-bold">
+                          Sign Up
                         </Link>
                       </p>
-                      <a href="#!" className="small text-info ">
-                        Terms of use.{"  "}
-                      </a>
-                      <a href="#!" className="small text-info">
-                        Privacy policy
-                      </a>
                     </div>
                   </div>
                 </div>

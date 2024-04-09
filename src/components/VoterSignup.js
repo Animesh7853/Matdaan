@@ -1,6 +1,6 @@
 import React from 'react'
 import './form.css';
-export default function signup() {
+export default function VoterSignup() {
   return (
     <>
     <div>
