@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./signin.css"
 
 function VoterLogin(props) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -71,7 +72,8 @@ function VoterLogin(props) {
                           value={credentials.password}
                           onChange={onChange}
                         />
-                        <label className="form-label" for="typePassword">
+                        <label className="form-label"  
+                        for="typePassword">
                           Password
                         </label>
                       </div>
