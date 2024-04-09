@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./signup.css";
 export default function VoterSignup() {
 
@@ -49,10 +49,11 @@ export default function VoterSignup() {
       <div className="container register">
         <div className="row">
           <div className="col-md-3 register-left">
-            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+            <img src="https://static.vecteezy.com/system/resources/previews/000/680/173/original/voting-political-hand-holding-election-concept.jpg" alt="" />
             <h3>Welcome</h3>
             <p>You are 30 seconds away from casting your 1st vote.</p>
-            <input type="submit" name="" value="Login" />
+            <p>Already have an account? Login in from here</p>
+            <Link to ="/voter/login"><button className="btn btn-primary" type = "Login">Login</button> </Link>
             <br />
           </div>
           <div className="col-md-9 register-right">
@@ -62,30 +63,30 @@ export default function VoterSignup() {
               role="tablist"
             >
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link active"
                   id="home-tab"
                   data-toggle="tab"
-                  href="#home"
+                  to="/voter/signup"
                   role="tab"
                   aria-controls="home"
                   aria-selected="false"
                 >
                   Voter
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link"
                   id="profile-tab"
                   data-toggle="tab"
-                  href="#profile"
+                  to="/candidate/signup"
                   role="tab"
                   aria-controls="profile"
                   aria-selected="false"
                 >
                   Candidate
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="tab-content" id="myTabContent">
@@ -95,7 +96,7 @@ export default function VoterSignup() {
                 role="tabpanel"
                 aria-labelledby="home-tab"
               >
-                <h3 className="register-heading">Apply as a Employee</h3>
+                <h3 className="register-heading">Register as a Voter</h3>
                 <div className="row register-form">
                   <div className="col-md-6">
                     <div className="form-group">
