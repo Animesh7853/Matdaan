@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Landing() {
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [close, setClose] = useState(false);
+
+  let navigate = useNavigate();
+
+  const handleValue = (event) => {
+    setSelectedValue(event.target.value);
+  }
+
+  const handleSubmit = () => {
+    console.log(selectedValue);
+    if(selectedValue=='voter'){
+      navigate('/voterLogin');
+    }
+    if(selectedValue=='candidate'){
+      navigate('/candidateLogin');
+    }
+    else if (selectedValue==null){
+      alert('Choose your identity');
+    }
+  }
+  const handleClose = () =>{
+    setClose(true);
+  }
+
+
   return (
     <>
       <div
@@ -29,39 +57,45 @@ export default function Landing() {
             </button>
           </span>
           <div
-            class="modal fade"
+            className="modal fade"
             id="exampleModalCenter"
             tabindex="-1"
             role="dialog"
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true"
           >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">
-                    Modal title
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLongTitle">
+                    Who you are ?
                   </h5>
                   <button
                     type="button"
-                    class="close"
+                    className="close"
                     data-dismiss="modal"
                     aria-label="Close"
                   >
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true" onClick={handleClose}>&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">...</div>
-                <div class="modal-footer">
+                <div className="modal-body">
+                  <select className="form-select" value={selectedValue} onChange={handleValue} aria-label="Default select example">
+                    <option selected>Choose who you are</option>
+                    <option value="voter">Voter</option>
+                    <option value="candidate">Candidate</option>
+                  </select>
+                </div>
+                <div className="modal-footer">
                   <button
                     type="button"
-                    class="btn btn-secondary"
+                    className="btn btn-danger"
                     data-dismiss="modal"
                   >
                     Close
                   </button>
-                  <button type="button" class="btn btn-primary">
-                    Save changes
+                  <button type="button" className="btn btn-success" onClick={handleSubmit}>
+                    Confirm
                   </button>
                 </div>
               </div>
