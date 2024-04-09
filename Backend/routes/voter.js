@@ -35,7 +35,7 @@ router.post("/signin",async(req,res)=>{
     try {
         
         const token =await Voter.matchPasswordAndGenerateToken(email,password);
-        return res.cookie("token",token).status(201).json({ msg: "success",token:req.cookies.token });
+        return res.cookie("token",token).status(201).json({ msg: "success",token });
     } catch (error) {
         return res.status(301).json({
             error:"Incorrect Email or Password",

@@ -4,7 +4,7 @@ import "./Home.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 
-function Home() {
+function VoterHome() {
   return (
     <>
      <div className="container-fluid">
@@ -75,4 +75,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default VoterHome;
