@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Link, createBrowserRouter } from "react-router-dom"; 
+import { Link } from "react-router-dom"; 
 import { useNavigate } from "react-router-dom";
 
-function Login(props) {
+function VoterLogin(props) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/login", {
+    const response = await fetch("http://localhost:5000/api/auth/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ function Login(props) {
                           className="fw-normal mb-3 pb-3"
                           style={{ letterSpacing: "1px", color: "#E3E3E7" }}
                         >
-                          Sign into your account
+                          Sign into your account as Voter
                         </h5>
 
                         <div className="form-outline mb-4">
@@ -147,4 +147,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default VoterLogin;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./useroption.css";
 import NavBar from "./NavBar";
-import Login from "./Login";
+import Login from "./CandidateLogin";
 
 export default function Useroption() {
   const [role, setRole] = useState("voter");
