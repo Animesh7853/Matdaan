@@ -38,6 +38,11 @@ const candidateSchema = new Schema({
         enum:["VOTER","CANDIDATE","ADMIN"],
         default:"CANDIDATE",
     },
+    election: {
+        type: String,
+        enum: ['LOKSABHA', 'VIDHANSABHA', 'MUNICIPAL'],
+        required: true,
+    },
 },{timestamps:true});
 
 candidateSchema.pre("save",function(next){
