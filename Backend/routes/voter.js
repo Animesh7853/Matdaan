@@ -1,7 +1,9 @@
-const {Router}= require("express");
+const express= require("express");
 const Voter=require('../models/voter')
 
-const router = Router();
+
+const router = express.Router();
+router.use(express.json());
 
 router.get("/signup",(req,res)=>{
     return res.status(201).json({msg:"pending"});
