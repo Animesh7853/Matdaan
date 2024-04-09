@@ -18,7 +18,7 @@ function CandidateLogin(props) {
     const json = await response.json();
     console.log(json);
     if (json.msg=='success') {
-      localStorage.setItem('token', json.authtoken);
+      localStorage.setItem('token', json.token);
       console.log(localStorage.getItem('token'))
       navigate('/candidate/home') ;
     } else {
