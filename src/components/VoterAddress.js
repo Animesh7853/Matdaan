@@ -10,7 +10,7 @@ function VoterAddress() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("url", {
+        const response = await fetch("http://localhost:8000/voter/add-voter", {
             method: "POST",
             headers: {
                 "Content-Type": "application-json",
@@ -23,6 +23,14 @@ function VoterAddress() {
                 pinCode: address.pinCode,
             }),
         });
+
+        const json = await response.json();
+        if(json.msg=='Address added successfully'){
+            alert("Added successfully.")
+        }
+        else{
+            alert("Some error caused")
+        }
 
         //deal with the response TODO
     };
