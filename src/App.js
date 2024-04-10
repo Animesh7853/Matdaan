@@ -7,6 +7,9 @@ import VoterLogin from "./components/VoterLogin";
 import CandidateLogin from "./components/CandidateLogin";
 import VoterSignup from "./components/VoterSignup";
 import VoterHome from "./components/VoterHome";
+import VoterAddress from "./components/VoterAddress";
+import VoterElection from "./components/VoterElection";
+import ElectionResult from "./components/ElectionResult";
 
 function App() {
   return (
@@ -20,6 +23,12 @@ function App() {
         <Route exact path="/voter/login" element={<VoterLogin/>} />
         <Route exact path="/voter/signup" element={<VoterSignup/>} />
         <Route exact path="/voter/home" element={<VoterHome/>} />
+        <Route exact path="/voter/address" element={<VoterAddress/>} />
+        <Route exact path="/voter/election" element={<VoterElection/>} />
+        <Route exact path="/election/result" element={<ElectionResult/>} />
+
+
+
 
 
 
