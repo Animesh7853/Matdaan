@@ -113,6 +113,12 @@ router.get('/election/:electionType', authMiddleware, async (req, res) => {
 
 router.post('/cast-vote/:electionType', authMiddleware, async (req, res) => {
     try {
+        // Check if the voter has already cast a vote for this election type
+        const existingVote = await Vote.findOne({ voter: req.user._id, election: req.params.electionType });
+        if (existingVote) {
+            return res.status(400).json({ error: 'You have already cast your vote for this election' });
+        }
+
         // Fetch the voter's city
         const voterAddress = await VoterAddress.findOne({ voter: req.user._id });
         const voterCity = voterAddress.city;
@@ -144,7 +150,6 @@ router.post('/cast-vote/:electionType', authMiddleware, async (req, res) => {
         return res.status(500).json({ error: err.message });
     }
 });
-
 
 router.get('/logout', (req, res) => {
     res.clearCookie("token").redirect("/signin");
