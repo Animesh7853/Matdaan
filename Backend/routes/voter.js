@@ -15,7 +15,7 @@ router.use(cookieParser());
 
 const authMiddleware = async (req, res, next) => {
     try {
-        const token = req.headers.token;
+        const token = req.headers.token || req.cookies.token;
         console.log('Token:', token);
         const decoded = jwt.verify(token, '$uperman@123');
         console.log('Decoded:', decoded);
@@ -57,7 +57,11 @@ router.post("/signin", async (req, res) => {
     try {
         const token = await Voter.matchPasswordAndGenerateToken(email, password);
         const user = await Voter.getUserByEmail(email);
-        return res.cookie("token", token).status(201).json({ msg: "success", token, user });
+
+        // Fetch the VoterAddress
+        const voterAddress = await VoterAddress.findOne({ voter: user._id }) || null;
+
+        return res.cookie("token", token).status(201).json({ msg: "success", token, user, voterAddress });
     } catch (error) {
         console.error(error);
         return res.status(301).json({

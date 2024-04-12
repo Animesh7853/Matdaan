@@ -78,6 +78,14 @@ candidateSchema.statics.matchPasswordAndGenerateToken = async function(email, pa
     return token;
 };
 
+// Add the getUserByEmail method to the candidateSchema
+candidateSchema.statics.getUserByEmail = async function(email) {
+    const user = await this.findOne({ email });
+    if (!user) {
+        throw new Error('Unable to find user');
+    }
+    return user;
+};
 
 const Candidate = model('candidate',candidateSchema);
 
