@@ -16,7 +16,7 @@ Matdaan is an electronic voting system designed for secure and efficient voting 
 - MongoDB installed (for backend)
 
 ## Getting Started
-1. Clone the repository: `git clone https://github.com/your-username/matdaan.git`
+1. Clone the repository: `git clone https://github.com/Animesh7853/Matdaan`
 2. Install dependencies:
    - Frontend: `cd matdaan && npm install`
    - Backend: `cd backend && npm install`
