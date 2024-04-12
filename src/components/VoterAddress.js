@@ -10,11 +10,11 @@ function VoterAddress() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("url", {
+        await fetch("http://localhost:8000/voter/add-voter", {
             method: "POST",
             headers: {
-                "Content-Type": "application-json",
-                // "token":{localStorage.getItem('token')} //I need to give token to backend to verify the user so that i can get the user id from the database through backend.
+                "Content-Type": "application/json",
+                "token": localStorage.getItem('token')
             },
             body: JSON.stringify({
                 street: address.street,
@@ -22,9 +22,14 @@ function VoterAddress() {
                 state: address.state,
                 pinCode: address.pinCode,
             }),
-        });
-
-        //deal with the response TODO
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.msg === "Address added successfully") {
+                    alert("Address added successfully");
+                }
+            })
+            .catch(error => console.error('Error:', error));
     };
 
     const onChange = (e) => {
@@ -120,7 +125,7 @@ function VoterAddress() {
                                         src="https://tse4.mm.bing.net/th?id=OIP.x4J5z_zdACkGt9poqUxVRQHaHa&pid=Api&P=0&h=180"
                                         className="rounded-3"
                                         style={{ width: "100px" }}
-                                    
+
                                     />
                                 </div>
                                 <div className="col-md-8">
