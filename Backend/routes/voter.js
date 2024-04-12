@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const Voter = require('../models/voter');
 const VoterAddress = require('../models/voter-add');
 const CandidateAddress = require('../models/candidate-add');
+const Vote = require('../models/vote');
 const Candidate = require('../models/candidate');
 
 const router = express.Router();
@@ -104,6 +105,40 @@ router.get('/election/:electionType', authMiddleware, async (req, res) => {
 
         // Return the fetched information
         return res.status(200).json({ candidates });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: err.message });
+    }
+});
+
+router.post('/cast-vote/:electionType', authMiddleware, async (req, res) => {
+    try {
+        // Fetch the voter's city
+        const voterAddress = await VoterAddress.findOne({ voter: req.user._id });
+        const voterCity = voterAddress.city;
+
+        // Fetch the candidate's city
+        const candidateAddress = await CandidateAddress.findOne({ candidate: req.body.candidateId });
+        const candidateCity = candidateAddress.city;
+
+        // Check if the voter's city and the candidate's city are the same
+        if (voterCity !== candidateCity) {
+            return res.status(400).json({ error: 'Voter and candidate must be from the same city' });
+        }
+
+        // Create a new vote
+        const vote = new Vote({
+            voter: req.user._id,
+            candidate: req.body.candidateId,
+            city: voterCity,
+            election: req.params.electionType,
+        });
+
+        // Save the new vote
+        await vote.save();
+
+        // Return the new vote
+        return res.status(201).json({ vote });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ error: err.message });
