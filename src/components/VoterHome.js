@@ -4,6 +4,7 @@ import "./Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import ElectionItem from "./ElectionItem";
+import VoterAddress from "./VoterAddress";
 
 function VoterHome() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -45,10 +46,10 @@ function VoterHome() {
                   id="menu"
                 >
                   <li className="nav-item">
-                    <a href="#" className="nav-link align-middle px-0">
+                    <Link to ='/voter/home' className="nav-link align-middle px-0">
                       <FontAwesomeIcon icon={faHome} />{" "}
                       <span className="ms-1 d-none d-sm-inline">Home</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a
@@ -68,12 +69,12 @@ function VoterHome() {
                       data-bs-parent="#menu"
                     >
                       <li className="w-100">
-                        <a href="#" className="nav-link px-0">
+                        <Link to="voter/election" className="nav-link px-0">
                           {" "}
                           <span className="d-none d-sm-inline">
                             UpComing Elections
                           </span>{" "}
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <a href="#" className="nav-link px-0">
@@ -86,13 +87,13 @@ function VoterHome() {
                     </ul>
                   </li>
                   <li>
-                    <a href="#" className="nav-link px-0 align-middle">
+                    <Link to="/election/result" className="nav-link px-0 align-middle">
                       <i className="fs-4 bi-table"></i>{" "}
                       <span className="ms-1 d-none d-sm-inline">
                         {" "}
                         Election Results
                       </span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a href="#" className="nav-link px-0 align-middle">
@@ -154,12 +155,13 @@ function VoterHome() {
                 </div>
               </div>
             </div>
-            <div className="col py-3">
-              <div className="container">
-                <div className="row">
-                  <ElectionItem />
-                </div>
-              </div>
+            <div className="col py-6">
+              {/* <div className="container">
+                <div className="row"> */
+                  /* <ElectionItem /> */}
+                  <VoterAddress/>
+                {/* </div>
+              </div> */}
             </div>
           </div>
         </div>
