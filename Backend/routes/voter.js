@@ -89,6 +89,28 @@ router.post('/add-voter', authMiddleware, async (req, res) => {
     }
 });
 
+router.get('/election/:electionType', authMiddleware, async (req, res) => {
+    try {
+        // Fetch the voter's city
+        const voterAddress = await VoterAddress.findOne({ voter: req.user._id });
+        const voterCity = voterAddress.city;
+
+        // Fetch the CandidateIds
+        const candidateAddresses = await CandidateAddress.find({ city: voterCity });
+        const candidateIds = candidateAddresses.map(address => address.candidate);
+
+        // Fetch the entire information from the Candidate schema
+        const candidates = await Candidate.find({ _id: { $in: candidateIds }, election: req.params.electionType });
+
+        // Return the fetched information
+        return res.status(200).json({ candidates });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: err.message });
+    }
+});
+
+
 router.get('/logout', (req, res) => {
     res.clearCookie("token").redirect("/signin");
 });
