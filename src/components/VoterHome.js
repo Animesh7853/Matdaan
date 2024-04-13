@@ -20,7 +20,7 @@ function VoterHome() {
 
   const handleLogout = () => {
     // Clear authentication token from local storage
-    localStorage.removeItem("token");
+    localStorage.clear();
     // Redirect to login page after logout
     navigate("/voter/login");
   };
@@ -93,22 +93,22 @@ function VoterHome() {
                     </Link>
                   </li>
                   <li>
-                    <a href="#" className="nav-link px-0 align-middle">
+                    <Link to="feedback" className="nav-link px-0 align-middle">
                       <i className="fs-4 bi-table"></i>{" "}
                       <span className="ms-1 d-none d-sm-inline">
                         {" "}
                         Give Feedback
                       </span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#" className="nav-link px-0 align-middle">
+                    <Link to="/news" className="nav-link px-0 align-middle">
                       <i className="fs-4 bi-table"></i>{" "}
                       <span className="ms-1 d-none d-sm-inline">
                         {" "}
                         Read News
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <hr />
@@ -121,20 +121,16 @@ function VoterHome() {
                     aria-expanded="false"
                   >
                     <img
-                      src="https://github.com/mdo.png"
+                      src="https://tse4.mm.bing.net/th?id=OIP.x4J5z_zdACkGt9poqUxVRQHaHa&pid=Api&P=0&h=180"
                       alt="hugenerd"
                       width="30"
                       height="30"
                       className="rounded-circle"
                     />
-                    <span className="d-none d-sm-inline mx-1">User Name</span>
+                    <span className="d-none d-sm-inline mx-1">{localStorage.getItem('firstName')}</span>
                   </a>
                   <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Settings
-                      </a>
-                    </li>
+                   
                     <li>
                       <a className="dropdown-item" href="#">
                         Profile
@@ -153,7 +149,8 @@ function VoterHome() {
               </div>
             </div>
             <div className="col py-6">
-                  <VoterAddress/>
+               <VoterAddress/>
+              
             </div>
           </div>
         </div>

@@ -13,6 +13,7 @@ import ElectionResult from "./components/ElectionResult";
 import LoksabhaCast from "./components/LoksabhaCast";
 import VidhansabhaCast from "./components/VidhansabhaCast";
 import MunicipalCast from "./components/MunicipalCast";
+import Feedback from "./components/Feedback";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/voter/loksabha/cast-vote" element={<LoksabhaCast/>} />
         <Route exact path="/voter/vidhansabha/cast-vote" element={<VidhansabhaCast/>} />
         <Route exact path="/voter/municipal/cast-vote" element={<MunicipalCast/>} />
+        <Route exact path="/feedback" element={<Feedback/>} />
 
 
 

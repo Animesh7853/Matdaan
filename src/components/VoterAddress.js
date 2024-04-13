@@ -106,7 +106,7 @@ function VoterAddress() {
                                 <div className="text-center">
 
                                     <button type="button" onClick={handleSubmit} className="btn btn-outline-dark col-md-10">
-                                        Place order
+                                        Submit your Address
                                     </button>
                                 </div>
                             </form>
@@ -134,24 +134,16 @@ function VoterAddress() {
                                 <div className="col-md-8">
                                     <div className="row">
                                         <div className="col">
-                                            <p className="mb-0 text">Name:</p>
-                                            <p className="mb-0 text">State:</p>
-                                            <p className="mb-0 text">City:</p>
+                                            <p className="mb-0 text">First name:</p>
+                                            <p className="mb-0 text">Last name:</p>
                                             <p className="mb-0 text">Mobile No.:</p>
-
-
                                         </div>
                                         <div className="col">
-                                            <p className="mb-0 text">{localStorage.getItem('firstName')} {localStorage.getItem('lastName')}</p>
-                                            <p className="mb-0 text">{localStorage.getItem('state')} </p>
-                                            <p className="mb-0 text">{localStorage.getItem('city')} </p>
+                                            <p className="mb-0 text">{localStorage.getItem('firstName')} </p>
+                                            <p className="mb-0 text">{localStorage.getItem('lastName')} </p>
                                             <p className="mb-0 text">{localStorage.getItem('mobileNumber')} </p>
-
                                         </div>
-
-
                                     </div>
-
                                 </div>
                             </div>
                             <div className="card-footer mt-4">
@@ -165,10 +157,8 @@ function VoterAddress() {
                                             <div className="col">
                                             <p className="mb-0 text">{localStorage.getItem('email')} </p>
                                             <p className="mb-0 text">{localStorage.getItem('voter_id')} </p>
-
                                             </div>
                                         </div>
-
                                     </li>
                                 </ul>
                             </div>

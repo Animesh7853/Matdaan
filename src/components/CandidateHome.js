@@ -8,6 +8,7 @@ import CandidateAddress from "./CandidateAddress";
 function CandidateHome() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   let navigate = useNavigate();
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -19,7 +20,7 @@ function CandidateHome() {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
     navigate("/candidate/login");
   };
   return (
@@ -40,72 +41,37 @@ function CandidateHome() {
                   id="menu"
                 >
                   <li className="nav-item">
-                    <a href="#" className="nav-link align-middle px-0">
-                      <FontAwesomeIcon icon={faHome} />{" "}
+                    <Link to="/candidate/home" className="nav-link align-middle px-0">
                       <span className="ms-1 d-none d-sm-inline">Home</span>
-                    </a>
+                    </Link>
                   </li>
+              
                   <li>
-                    <a
-                      href="#submenu1"
-                      data-bs-toggle="collapse"
-                      className="nav-link px-0 align-middle"
-                    >
-                      <i className="fs-4 bi-speedometer2"></i>{" "}
-                      <FontAwesomeIcon icon="faUsers" />
-                      <span className="ms-1 d-none d-sm-inline">
-                        Elections
-                      </span>{" "}
-                    </a>
-                    <ul
-                      className="collapse show nav flex-column ms-1"
-                      id="submenu1"
-                      data-bs-parent="#menu"
-                    >
-                      <li className="w-100">
-                        <a href="#" className="nav-link px-0">
-                          {" "}
-                          <span className="d-none d-sm-inline">
-                            UpComing Elections
-                          </span>{" "}
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" className="nav-link px-0">
-                          {" "}
-                          <span className="d-none d-sm-inline">
-                            OnGoing Elections
-                          </span>{" "}
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="#" className="nav-link px-0 align-middle">
+                    <Link to='/election/result' className="nav-link px-0 align-middle">
                       <i className="fs-4 bi-table"></i>{" "}
                       <span className="ms-1 d-none d-sm-inline">
                         {" "}
                         Election Results
                       </span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#" className="nav-link px-0 align-middle">
+                    <Link to="/feedback" className="nav-link px-0 align-middle">
                       <i className="fs-4 bi-table"></i>{" "}
                       <span className="ms-1 d-none d-sm-inline">
                         {" "}
                         Give Feedback
                       </span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#" className="nav-link px-0 align-middle">
+                    <Link to="/news" className="nav-link px-0 align-middle">
                       <i className="fs-4 bi-table"></i>{" "}
                       <span className="ms-1 d-none d-sm-inline">
                         {" "}
                         Read News
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <hr />
@@ -118,20 +84,16 @@ function CandidateHome() {
                     aria-expanded="false"
                   >
                     <img
-                      src="https://github.com/mdo.png"
+                      src="https://tse4.mm.bing.net/th?id=OIP.x4J5z_zdACkGt9poqUxVRQHaHa&pid=Api&P=0&h=180"
                       alt="hugenerd"
                       width="30"
                       height="30"
                       className="rounded-circle"
                     />
-                    <span className="d-none d-sm-inline mx-1">loser</span>
+                    <span className="d-none d-sm-inline mx-1">{localStorage.getItem('firstName')}</span>
                   </a>
                   <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Settings
-                      </a>
-                    </li>
+                   
                     <li>
                       <a className="dropdown-item" href="#">
                         Profile
