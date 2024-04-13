@@ -156,7 +156,7 @@ router.post('/cast-vote/:electionType', authMiddleware, async (req, res) => {
         await vote.save();
 
         // Return the new vote
-        return res.status(201).json({ vote });
+        return res.status(201).json({ msg:"success", vote });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ error: err.message });

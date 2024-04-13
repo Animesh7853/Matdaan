@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate } from 'react-router-dom';
 
 function LoksabhaCast() {
   const [candidates, setCandidates] = useState([]);
+  const [voted, setVoted] = useState(false)
   const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
   const token = localStorage.getItem('token'); // Get the token from local storage
@@ -39,9 +42,9 @@ function LoksabhaCast() {
   };
 
   // Function to handle vote submission
-  const handleVoteSubmission = () => {
+  const handleVoteSubmission =  async () => {
     // Replace 'VOTE_API_URL' with the actual URL of your vote submission API
-    fetch('http://localhost:8000/voter/cast-vote/LOKSABHA', {
+   const response = await  fetch('http://localhost:8000/voter/cast-vote/LOKSABHA', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,54 +53,71 @@ function LoksabhaCast() {
       },
       body: JSON.stringify({ candidateId: selectedCandidate })
     })
-      .then(response => response.json())
-      .then(data => {
-        // Handle successful vote submission
-        console.log('Vote submitted successfully:', data);
-      })
-      .catch(error => console.error('Error submitting vote:', error));
+      // .then(response => response.json())
+      // .then(data => {
+      //   // Handle successful vote submission
+      //   console.log('Vote submitted successfully:', data);
+      // })
+      // .catch(error => console.error('Error submitting vote:', error));
+      const json = await response.json();
+      if(json.msg==="success"){
+        console.log("You have casted your vote")
+        setVoted(true)
+        alert("Congrats! You have successfully cast your vote")
+        navigate('/voter/home')
+      }
+      if(json.error=== 'You have already cast your vote for this election'){
+        alert("You have already cast your vote for this election ")
+        navigate("/voter/home")
+
+      }
   };
 
   return (
-    <div className="container">
-      <h2>Candidates List for Loksabha Election</h2>
-      <table className="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {candidates.map(candidate => (
-            <tr key={candidate._id}>
-              <td>{candidate._id}</td>
-              <td>{candidate.firstName}</td>
-              <td>{candidate.lastName}</td>
-              <td>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => handleCandidateSelection(candidate._id)}
+    <>
+    
+      
+      <div className="container">
+    <h2>Candidates List for Loksabha Election</h2>
+    <table className="table table-striped table-dark">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {candidates.map(candidate => (
+          <tr key={candidate._id}>
+            <td>{candidate._id}</td>
+            <td>{candidate.firstName}</td>
+            <td>{candidate.lastName}</td>
+            <td>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleCandidateSelection(candidate._id)}
                 >
-                  Vote
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {selectedCandidate && (
-        <div>
-          <h3>Selected Candidate</h3>
-          <p>ID: {selectedCandidate}</p>
-          <button className="btn btn-success" onClick={handleVoteSubmission}>
-            Cast Vote
-          </button>
-        </div>
-      )}
-    </div>
+                Vote
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    {selectedCandidate && (
+      <div>
+        <h3>Selected Candidate</h3>
+        <p>ID: {selectedCandidate}</p>
+        <button className="btn btn-success" onClick={handleVoteSubmission}>
+          Cast Vote
+        </button>
+      </div>
+    )}
+  </div>
+ 
+    </>
   );
 }
 
