@@ -69,7 +69,7 @@ function VoterHome() {
                       data-bs-parent="#menu"
                     >
                       <li className="w-100">
-                        <Link to="voter/election" className="nav-link px-0">
+                        <Link to="../voter/election" className="nav-link px-0">
                           {" "}
                           <span className="d-none d-sm-inline">
                             UpComing Elections
