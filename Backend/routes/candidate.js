@@ -74,20 +74,31 @@ router.post('/add-candidate', authMiddleware, async (req, res) => {
     const candidateId = req.user._id;
 
     try {
-        const newAddress = await CandidateAddress.create({
-            candidate: candidateId,
-            street,
-            city,
-            state,
-            pinCode,
-        });
+        let candidateAddress = await CandidateAddress.findOne({ candidate: candidateId });
 
-        return res.status(201).json({ msg: "Address added successfully", address: newAddress });
+        if (candidateAddress) {
+            // Update existing address
+            candidateAddress.street = street;
+            candidateAddress.city = city;
+            candidateAddress.state = state;
+            candidateAddress.pinCode = pinCode;
+            await candidateAddress.save();
+            return res.status(200).json({ msg: "Address updated successfully", address: candidateAddress });
+        } else {
+            // Create new address
+            const newAddress = await CandidateAddress.create({
+                candidate: candidateId,
+                street,
+                city,
+                state,
+                pinCode,
+            });
+            return res.status(201).json({ msg: "Address added successfully", address: newAddress });
+        }
     } catch (err) {
         return res.status(400).json({ error: err.message });
     }
 });
-
 
 
 

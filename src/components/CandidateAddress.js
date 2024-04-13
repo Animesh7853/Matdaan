@@ -28,6 +28,9 @@ function CandidateAddress() {
                 if (data.msg === "Address added successfully") {
                     alert("Address added successfully");
                 }
+                if (data.msg === "Address updated successfully") {
+                    alert("Address updated successfully");
+                }
             })
             .catch(error => console.error('Error:', error));
     };
