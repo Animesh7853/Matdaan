@@ -1,14 +1,38 @@
 const express= require("express");
-const Candidate=require('../models/candidate')
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const Candidate=require('../models/candidate');
+const VoterAddress = require('../models/voter-add');
 const CandidateAddress = require('../models/candidate-add'); // Import the CandidateAddress model
 
 const router = express.Router();
-
 router.use(express.json());
+router.use(cors());
+router.use(cookieParser());
 
-// router.get("/signup",(req,res)=>{
-//     return res.status(201).json({msg:"pending"});
-// });
+const authMiddleware = async (req, res, next) => {
+    try {
+        const token = req.headers.token || req.cookies.token;
+        console.log('Token:', token);
+        const decoded = jwt.verify(token, '$uperman@123');
+        console.log('Decoded:', decoded);
+
+        const user = await Candidate.findById(decoded._id).catch(err => console.error(err));
+        console.log('User:', user);
+
+        if (!user) {
+            throw new Error();
+        }
+
+        req.user = user;
+        next();
+    } catch (error) {
+        console.error(error);
+        res.status(401).send({ error: 'Please authenticate.' });
+    }
+};
+
 
 router.post('/signup', async (req, res) => {
     const { firstName, lastName, email, aadharNumber, mobileNumber, password, election } = req.body;
@@ -20,7 +44,7 @@ router.post('/signup', async (req, res) => {
             aadharNumber,
             mobileNumber,
             password,
-            election,
+            election
         });
         return res.status(201).json({ msg: "success", Candidate: newCandidate._id, token: req.cookies.token });
     } catch (err) {
@@ -28,31 +52,26 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-// router.get("/signin",(req,res)=>{
-//     return res.status(201).json({ msg: "success" });
-// });
-
-router.post("/signin",async(req,res)=>{
-    const {email,password}=req.body;
+router.post("/signin", async (req, res) => {
+    const { email, password } = req.body;
     try {
-        
-        const token =await Candidate.matchPasswordAndGenerateToken(email,password);
-        return res.cookie("token",token).status(201).json({ msg: "success",token });
+        const token = await Candidate.matchPasswordAndGenerateToken(email, password);
+        const user = await Candidate.getUserByEmail(email);
+
+        // Fetch the CandidateAddress
+        const candidateAddress = await CandidateAddress.findOne({ candidate: user._id }) || null;
+
+        return res.cookie("token", token).status(201).json({ msg: "success", token, user, candidateAddress });
     } catch (error) {
         return res.status(301).json({
-            error:"Incorrect Email or Password",
+            error: "Incorrect Email or Password",
         });
     }
-
 });
 
-router.get('/logout',(req,res)=>{
-    res.clearCookie("token").redirect("/signin");
-});
-
-router.post('/add-candidate', async (req, res) => {
+router.post('/add-candidate', authMiddleware, async (req, res) => {
     const { street, city, state, pinCode } = req.body;
-    const candidateId = req.user._id; // Assuming the authenticated user's ID is stored in req.user._id
+    const candidateId = req.user._id;
 
     try {
         const newAddress = await CandidateAddress.create({
@@ -70,6 +89,11 @@ router.post('/add-candidate', async (req, res) => {
 });
 
 
+
+
+router.get('/logout',(req,res)=>{
+    res.clearCookie("token").redirect("/signin");
+});
 
 
 module.exports=router;
