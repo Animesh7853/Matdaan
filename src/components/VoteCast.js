@@ -13,8 +13,8 @@ function VoteCast() {
                         <div className="col">
                             <p>Total no. of candidates registered: 32</p>
                         </div>
-                       
-                        
+
+
                     </div>
                 </div>
 
@@ -26,7 +26,7 @@ function VoteCast() {
                             <th scope="col">Name</th>
                             <th scope="col">Party Name</th>
                             <th scope="col">Party Symbol</th>
-                            <th scope="col">Total No. of Votes</th>
+                            <th scope="col">Your Vote</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,21 +35,38 @@ function VoteCast() {
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>@mdo</td>
-                            <td>4223</td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    // checked={selectedCandidates.includes(candidate.id)}
+                                    // onChange={() => handleCheckboxChange(candidate.id)}
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>@fat</td>
-                            <td>221</td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    // checked={selectedCandidates.includes(candidate.id)}
+                                    // onChange={() => handleCheckboxChange(candidate.id)}
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">3</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <td>221</td>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    // checked={selectedCandidates.includes(candidate.id)}
+                                    // onChange={() => handleCheckboxChange(candidate.id)}
+                                />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
