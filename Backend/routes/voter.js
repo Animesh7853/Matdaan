@@ -76,15 +76,27 @@ router.post('/add-voter', authMiddleware, async (req, res) => {
     const voterId = req.user._id;
 
     try {
-        const newAddress = await VoterAddress.create({
-            voter: voterId,
-            street,
-            city,
-            state,
-            pinCode,
-        });
+        let voterAddress = await VoterAddress.findOne({ voter: voterId });
 
-        return res.status(201).json({ msg: "Address added successfully", address: newAddress });
+        if (voterAddress) {
+            // Update existing address
+            voterAddress.street = street;
+            voterAddress.city = city;
+            voterAddress.state = state;
+            voterAddress.pinCode = pinCode;
+            await voterAddress.save();
+            return res.status(200).json({ msg: "Address updated successfully", address: voterAddress });
+        } else {
+            // Create new address
+            const newAddress = await VoterAddress.create({
+                voter: voterId,
+                street,
+                city,
+                state,
+                pinCode,
+            });
+            return res.status(201).json({ msg: "Address added successfully", address: newAddress });
+        }
     } catch (err) {
         return res.status(400).json({ error: err.message });
     }
