@@ -1,19 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function ElectionItem() {
+function ElectionItem(props) {
   return (
     <div className="card my-2" style={{ width: '18rem' }}>
-    <img src="https://tse2.mm.bing.net/th?id=OIP.WjdshgattHHx2-_NWilXCwHaD0&pid=Api&P=0&h=180" className="card-img-top" alt="Fissure in Sandstone" />
-    <div className="card-body">
-      <h5 className="card-title">Lok Sabha Election</h5>
-      <p className="card-text">Election id: 312212121</p>
-      <p className="card-text">Total Candidates: 32</p>
-      <a href="#!" className="btn btn-primary" data-mdb-ripple-init>Cast your vote</a>
+      <div className="card-body d-flex flex-column">
+        <img src={props.image} className="card-img-top mb-2" alt="Fissure in Sandstone" style={{ objectFit: "cover", width: "100%", maxHeight: "150px" }} />
+        <h5 className="card-title">{props.title}</h5>
+        <p className="card-text">Voter id: {props.id}</p>
+        <p className="card-text">Total no. of candidates: {props.cand_no}</p>
+        <Link to={props.path} className="btn btn-primary mt-auto" data-mdb-ripple-init>
+          Cast your vote
+        </Link>
+      </div>
     </div>
-  </div>
-  
-
-  )
+  );
 }
 
-export default ElectionItem
+export default ElectionItem;

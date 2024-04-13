@@ -10,7 +10,10 @@ import VoterHome from "./components/VoterHome";
 import VoterAddress from "./components/VoterAddress";
 import VoterElection from "./components/VoterElection";
 import ElectionResult from "./components/ElectionResult";
-import VoteCast from "./components/VoteCast";
+import LoksabhaCast from "./components/LoksabhaCast";
+import VidhansabhaCast from "./components/VidhansabhaCast";
+import MunicipalCast from "./components/MunicipalCast";
+
 
 function App() {
   return (
@@ -27,7 +30,9 @@ function App() {
         <Route exact path="/voter/address" element={<VoterAddress/>} />
         <Route exact path="/voter/election" element={<VoterElection/>} />
         <Route exact path="/election/result" element={<ElectionResult/>} />
-        <Route exact path="/voter/cast-vote" element={<VoteCast/>} />
+        <Route exact path="/voter/loksabha/cast-vote" element={<LoksabhaCast/>} />
+        <Route exact path="/voter/vidhansabha/cast-vote" element={<VidhansabhaCast/>} />
+        <Route exact path="/voter/municipal/cast-vote" element={<MunicipalCast/>} />
 
 
 

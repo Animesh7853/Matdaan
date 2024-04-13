@@ -4,6 +4,7 @@ import "./Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import CandidateAddress from "./CandidateAddress";
 function CandidateHome() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   let navigate = useNavigate();
@@ -148,7 +149,9 @@ function CandidateHome() {
                 </div>
               </div>
             </div>
-            <div className="col py-3">Content area...</div>
+            <div className="col py-3">
+              <CandidateAddress/>
+            </div>
           </div>
         </div>
       )}
