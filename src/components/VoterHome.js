@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Home.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import ElectionItem from "./ElectionItem";
 import VoterAddress from "./VoterAddress";
 
 function VoterHome() {
@@ -47,7 +44,7 @@ function VoterHome() {
                 >
                   <li className="nav-item">
                     <Link to ='/voter/home' className="nav-link align-middle px-0">
-                      <FontAwesomeIcon icon={faHome} />{" "}
+             
                       <span className="ms-1 d-none d-sm-inline">Home</span>
                     </Link>
                   </li>
@@ -58,7 +55,7 @@ function VoterHome() {
                       className="nav-link px-0 align-middle"
                     >
                       <i className="fs-4 bi-speedometer2"></i>{" "}
-                      <FontAwesomeIcon icon="faUsers" />
+                   
                       <span className="ms-1 d-none d-sm-inline">
                         Elections
                       </span>{" "}
@@ -156,12 +153,7 @@ function VoterHome() {
               </div>
             </div>
             <div className="col py-6">
-              {/* <div className="container">
-                <div className="row"> */
-                  /* <ElectionItem /> */}
                   <VoterAddress/>
-                {/* </div>
-              </div> */}
             </div>
           </div>
         </div>

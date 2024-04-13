@@ -22,6 +22,14 @@ function VoterLogin(props) {
     const json = await response.json();
     if (json.msg=='success') {
       localStorage.setItem("token", json.token);
+      localStorage.setItem("firstName", json.user.firstName);
+      localStorage.setItem("lastName", json.user.lastName);
+      localStorage.setItem("mobileNumber", json.user.mobileNumber);
+      localStorage.setItem("state", json.voterAddress.state);
+      localStorage.setItem("city", json.voterAddress.city);
+      console.log(localStorage.getItem('city'))
+      localStorage.setItem("voter_id", json.user._id);
+      localStorage.setItem("email", json.user.email);
       navigate("/voter/home");
     } else {
       alert("Invalid credentials");
