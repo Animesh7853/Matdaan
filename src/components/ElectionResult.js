@@ -28,7 +28,7 @@ function ElectionResult() {
 
   return (
     <>
-      <Navbar />
+      <Navbar home ="/" election="/"/>
       <div className="container">
         <div className="row my-3">
           <div className="col">

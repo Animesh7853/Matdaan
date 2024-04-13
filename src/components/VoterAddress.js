@@ -106,7 +106,7 @@ function VoterAddress() {
                                 <div className="text-center">
 
                                     <button type="button" onClick={handleSubmit} className="btn btn-outline-dark col-md-10">
-                                        Place order
+                                        Submit your Address
                                     </button>
                                 </div>
                             </form>
@@ -132,22 +132,33 @@ function VoterAddress() {
                                     />
                                 </div>
                                 <div className="col-md-8">
-                                    <p className="mb-0 text">Name</p>
-                                    <p className="mb-0 text-descriptions">Age</p>
-                                    <p className="mb-0 text-descriptions ">State</p>
-                                    <p className="mb-0 text-descriptions ">Mobile Number</p>
-
+                                    <div className="row">
+                                        <div className="col">
+                                            <p className="mb-0 text">First name:</p>
+                                            <p className="mb-0 text">Last name:</p>
+                                            <p className="mb-0 text">Mobile No.:</p>
+                                        </div>
+                                        <div className="col">
+                                            <p className="mb-0 text">{localStorage.getItem('firstName')} </p>
+                                            <p className="mb-0 text">{localStorage.getItem('lastName')} </p>
+                                            <p className="mb-0 text">{localStorage.getItem('mobileNumber')} </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="card-footer mt-4">
                                 <ul className="list-group list-group-flush">
-                                    <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 text-muted">
-                                        E-mail:
-                                        <span>dsdd</span>
-                                    </li>
                                     <li className="list-group-item d-flex justify-content-between align-items-center px-0 fw-bold ">
-                                        Election-id:
-                                        <span>sdaiudbsajdoSBD213213</span>
+                                        <div className="row">
+                                            <div className="col">
+                                                <p className="mb-0 text">E-Mail:</p>
+                                                <p className="mb-0 text">Voter-Id</p>
+                                            </div>
+                                            <div className="col">
+                                            <p className="mb-0 text">{localStorage.getItem('email')} </p>
+                                            <p className="mb-0 text">{localStorage.getItem('voter_id')} </p>
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>

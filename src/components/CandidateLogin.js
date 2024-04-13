@@ -19,7 +19,11 @@ function CandidateLogin(props) {
     console.log(json);
     if (json.msg=='success') {
       localStorage.setItem('token', json.token);
-      console.log(localStorage.getItem('token'))
+      localStorage.setItem("firstName", json.user.firstName);
+      localStorage.setItem("lastName", json.user.lastName);
+      localStorage.setItem("mobileNumber", json.user.mobileNumber);
+      localStorage.setItem("cand_id", json.user._id);
+      localStorage.setItem("email", json.user.email);
       navigate('/candidate/home') ;
     } else {
       alert("Invalid credentials");

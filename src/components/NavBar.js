@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-dark">
@@ -30,19 +30,19 @@ export default function Navbar() {
 
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link text-light mx-3" to='./voter/home'>
+                <Link className="nav-link text-light mx-3" to={props.home}>
                  Home
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-light mx-3" >
+                <Link to = "/election/result"  className="nav-link text-light mx-3" >
                   Election Result
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-light mx-3" href="#">
+                <Link className="nav-link text-light mx-3" to={props.election}>
                   Elections
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

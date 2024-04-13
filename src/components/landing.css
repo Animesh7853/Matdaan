@@ -1,0 +1,14 @@
+.video-background {
+    object-fit: cover;
+  }
+  
+.custom-modal {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(52, 44, 44, 0.5)); 
+}
+
+
+.custom-modal-content {
+  background: linear-gradient(to bottom, #333333, #2e2525); 
+  border-color: #001f3f; 
+  color: #f0f0f0; 
+}
