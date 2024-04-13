@@ -10,6 +10,7 @@ const Candidate = require('./models/candidate');
 
 const voterRouter = require('./routes/voter');
 const candidateRouter = require('./routes/candidate');
+const resultRouter = require('./routes/result');
 
 const app = express();
 const PORT = 8000;
@@ -39,6 +40,7 @@ app.use(checkForAuthenticationCookie('token'));
 // Routes
 app.use('/voter', voterRouter);
 app.use('/candidate', candidateRouter);
+app.use('/result', resultRouter);
 
 app.listen(PORT, () => {
     console.log(`Server Started at PORT:${PORT}`);
