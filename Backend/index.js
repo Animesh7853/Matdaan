@@ -25,8 +25,8 @@ app.use(function(req, res, next) {
 });
 
 // Database
-const sequelize = new Sequelize('matdaan', 'admin', '123456789', {
-    host: 'database-1.cvyicsusmibx.us-east-1.rds.amazonaws.com',
+const sequelize = new Sequelize('matdaan_final', 'admin', '123456789', {
+    host: 'maatdaan.cj6c4ei20lt1.us-east-1.rds.amazonaws.com',
     dialect: 'mysql'
 });
 

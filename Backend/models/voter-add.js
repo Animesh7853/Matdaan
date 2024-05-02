@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 
-const sequelize = new Sequelize('mysql://admin:123456789@database-1.cvyicsusmibx.us-east-1.rds.amazonaws.com/matdaan');
+const sequelize = new Sequelize('mysql://admin:123456789@maatdaan.cj6c4ei20lt1.us-east-1.rds.amazonaws.com/matdaan_final');
 
 const VoterAddress = sequelize.define('VoterAddress', {
   voterId: {
