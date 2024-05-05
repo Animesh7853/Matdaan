@@ -1,7 +1,7 @@
 # Matdaan - eVoting System
 
-![image](https://github.com/Animesh7853/Matdaan/assets/114354311/c265fd24-78a0-487f-9d6c-ebc4ea90603a)
 
+![1693117772357](https://github.com/Animesh7853/Matdaan/assets/114354311/453b508c-0dd3-4d70-96fe-b040122bb9cd)
 
 
 Matdaan is an electronic voting system designed for secure and efficient voting processes. It includes both frontend and backend components.
