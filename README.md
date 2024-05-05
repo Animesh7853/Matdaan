@@ -2,6 +2,11 @@
 
 Matdaan is an electronic voting system designed for secure and efficient voting processes. It includes both frontend and backend components.
 
+It is mini proect for Database Management System Course.
+
+If you want to access report files: https://drive.google.com/drive/u/0/folders/1b4CookkGlIsiS2kjuSFhDfNNyj1x743r
+
+
 ## Frontend Technologies
 - React
 - Bootstrap
@@ -9,30 +14,24 @@ Matdaan is an electronic voting system designed for secure and efficient voting 
 ## Backend Technologies
 - Node.js
 - Express.js
-- MongoDB (with Mongoose)
+- MySQL (with Sequelize)
 
 ## Prerequisites
 - Node.js installed
-- MongoDB installed (for backend)
+- MySQL installed and configured (for backend)
 
 ## Getting Started
 1. Clone the repository: `git clone https://github.com/Animesh7853/Matdaan`
 2. Install dependencies:
    - Frontend: `cd matdaan && npm install`
    - Backend: `cd backend && npm install`
-3. Start the development servers:
-   - Frontend: `npm start`
-   - Backend: `npm run start`
+
 
 You can access the frontend at `http://localhost:3000` and the backend at `http://localhost:8000`.
 
 ## Available Scripts
-- `npm start`: Start the frontend development server.
-- `npm run start`: Start the backend development server.
-- `npm run build`: Build the frontend for production.
+- `npm run both`: Start the frontend and backend development server.
 - `npm test`: Run tests.
-
-
 
 
 © ANIMESH JHA , UJJAWAL KANTT , PRANAV KHANDELWAL
