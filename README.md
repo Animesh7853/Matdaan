@@ -42,12 +42,14 @@ You can access the frontend at `http://localhost:3000` and the backend at `http:
 
 
   Candidate Login Page:
+  
 ![image](https://github.com/Animesh7853/Matdaan/assets/114354311/71b5953e-7113-4db7-b8c6-0c4cd99628ea)
 
   Candidate Sigup Page:
   
 
   Candidate Address Page:
+  
   ![image](https://github.com/Animesh7853/Matdaan/assets/114354311/a3cd409c-0578-42fa-9d32-724059f3170a)
 
 
@@ -63,7 +65,7 @@ You can access the frontend at `http://localhost:3000` and the backend at `http:
 
   Voter Address Page:
 
-![image](https://github.com/Animesh7853/Matdaan/assets/114354311/68dd34f0-5e5d-4445-814f-f5512f9fa4bb)
+   ![image](https://github.com/Animesh7853/Matdaan/assets/114354311/68dd34f0-5e5d-4445-814f-f5512f9fa4bb)
 
 
   ELection Page:
@@ -77,8 +79,9 @@ You can access the frontend at `http://localhost:3000` and the backend at `http:
 
   ![image](https://github.com/Animesh7853/Matdaan/assets/114354311/932b6bc9-0bb9-4504-8132-368903df785a)
 
-Result:
-![image](https://github.com/Animesh7853/Matdaan/assets/114354311/57bdd9f5-1291-43f4-9fcd-b1b38a3ad7f0)
+   Result:
+   
+   ![image](https://github.com/Animesh7853/Matdaan/assets/114354311/57bdd9f5-1291-43f4-9fcd-b1b38a3ad7f0)
 
 
 
