@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -5,15 +6,13 @@ const cookieParser = require('cookie-parser');
 
 const { checkForAuthenticationCookie } = require("./middleware/authentication");
 
-const Voter = require('./models/voter');
-const Candidate = require('./models/candidate');
+
 
 const voterRouter = require('./routes/voter');
 const candidateRouter = require('./routes/candidate');
 const resultRouter = require('./routes/result');
-
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT;
 
 // Enable CORS middleware
 app.use(function(req, res, next) {
@@ -25,12 +24,11 @@ app.use(function(req, res, next) {
 });
 
 // Database
-mongoose.connect('mongodb://127.0.0.1:27017/matdaan').then(() => {
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log('MongoDB Connected');
 }).catch(err => {
     console.error('MongoDB Connection Error:', err);
 });
-
 // Middleware
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
