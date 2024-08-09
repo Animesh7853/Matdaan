@@ -10,7 +10,7 @@ function CandidateAddress() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await fetch("http://localhost:8000/candidate/add-candidate", {
+        await fetch("https://matdaan-1.onrender.com/candidate/add-candidate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -18,7 +18,7 @@ console.log('token')
   };
 
   // Replace 'API_URL' with the actual URL of your API
-  fetch('http://localhost:8000/voter/election/MUNICIPAL', requestOptions)
+  fetch('https://matdaan-1.onrender.com/voter/election/MUNICIPAL', requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error('Failed to fetch candidates');

@@ -15,7 +15,7 @@ export default function VoterSignup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8000/voter/signup", {
+    const response = await fetch("https://matdaan-1.onrender.com/voter/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

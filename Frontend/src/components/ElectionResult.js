@@ -7,7 +7,7 @@ function ElectionResult() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:8000/result", {
+      const response = await fetch("https://matdaan-1.onrender.com/result", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
