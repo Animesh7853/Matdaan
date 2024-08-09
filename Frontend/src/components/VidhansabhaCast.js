@@ -19,7 +19,7 @@ function VidhansabhaCast() {
   };
 
   // Replace 'API_URL' with the actual URL of your API
-  fetch('http://localhost:8000/voter/election/VIDHANSABHA', requestOptions)
+  fetch('https://matdaan-1.onrender.com/voter/election/VIDHANSABHA', requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error('Failed to fetch candidates');

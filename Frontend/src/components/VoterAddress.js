@@ -10,7 +10,7 @@ function VoterAddress() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await fetch("http://localhost:8000/voter/add-voter", {
+        await fetch("https://matdaan-1.onrender.com/voter/add-voter", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

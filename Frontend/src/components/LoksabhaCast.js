@@ -18,7 +18,7 @@ function LoksabhaCast() {
   };
 
   // Replace 'API_URL' with the actual URL of your API
-  fetch('http://localhost:8000/voter/election/LOKSABHA', requestOptions)
+  fetch('https://matdaan-1.onrender.com/voter/election/LOKSABHA', requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error('Failed to fetch candidates');
