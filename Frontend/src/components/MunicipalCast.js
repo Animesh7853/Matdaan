@@ -44,7 +44,7 @@ console.log('token')
   // Function to handle vote submission
   const handleVoteSubmission =  async () => {
     // Replace 'VOTE_API_URL' with the actual URL of your vote submission API
-   const response = await  fetch('http://localhost:8000/voter/cast-vote/MUNICIPAL', {
+   const response = await  fetch('https://matdaan-1.onrender.com/voter/cast-vote/MUNICIPAL', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
